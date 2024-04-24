@@ -16,7 +16,8 @@ dayjs.locale('pt-br')
 export function AttendeeList() {
     
     const [search, setSearch] = useState('')
-    
+    const [page] = [1]
+
     function OnSearchInputChange(event: ChangeEvent<HTMLInputElement>) {
         setSearch(event.target.value)
     }
@@ -44,7 +45,7 @@ export function AttendeeList() {
                     </tr>
                 </thead>
                 <tbody>
-                    {Attendees.map((attendee) => {
+                    {Attendees.slice((page-1)*10, page * 10).map((attendee) => {
                         return (
                             <TableRow key={attendee.id} >
                                 <TableCell>
@@ -71,11 +72,11 @@ export function AttendeeList() {
                 <tfoot>
                     <tr>
                         <TableCell colSpan={3}>
-                            Mostrando 10 de 228 itens
+                            Mostrando {page * 10} de {Attendees.length} itens
                         </TableCell>
                         <TableCell className={'text-right'} colSpan={3}>
                             <div className='inline-flex items-center gap-8'>
-                                <span>Página 1 de 23</span>
+                                <span>Página {page} de {(Attendees.length)/10}</span>
                                 <div className='flex gap-1.5'>
                                     <IconButton>
                                         <ChevronsLeft className='size-4' />
