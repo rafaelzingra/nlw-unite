@@ -99,6 +99,7 @@ export function AttendeeList() {
                 <div className="px-3 py-1.5 border border-white/10 rounded-lg text-sm w-72 flex items-center gap-3">
                     <Search className='size-4 text-emerald-300' />
                     <input onChange={OnSearchInputChange} 
+                        value={search}
                         className="bg-transparent flex-1 outline-none focus:ring-0" 
                         placeholder="Buscar participante"/>
                 </div>                
